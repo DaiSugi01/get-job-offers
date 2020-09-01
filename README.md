@@ -1,7 +1,10 @@
 # get-job-offers  
 This program searches and gets the number of job offers from [Indeed.ca](https://ca.indeed.com/) using keywords you chose.  
   
-  
+# Getting Started
+ - copy and paste the script to your script editor.
+ - 
+
 # The format of your spread sheet  
 The format of your spread sheet should be:  
 

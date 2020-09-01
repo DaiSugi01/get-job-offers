@@ -4,7 +4,7 @@ function onOpen() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
   var entries = [
     {
-      name : "Get a jobs from indeed and Linkedin",
+      name : "Get jobs from indeed",
       functionName : "myFunction"
     }
   ];
