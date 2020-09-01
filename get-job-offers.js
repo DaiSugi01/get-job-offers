@@ -46,7 +46,7 @@ function getIndeedJobs(sheetData){
   const rowEndData = sheetData.getDataRange().getLastRow();
   
   for (let i = rowStartData; i <= rowEndData; i ++) {
-    
+
     const keyword = sheetData.getRange(i, colID).getValue();
     const getUrl = `https://ca.indeed.com/jobs?q=${keyword}&l=Vancouver%2C+BC`;
     
@@ -61,18 +61,26 @@ function getIndeedJobs(sheetData){
     const data_list = Parser.data(html).from('<span class="rbLabel">').to('</span>').iterate();
     
     for (let j = 0; j < data_list.length; j++) {
-      if (data_list[j] === "Full-time") {
-        fullTimeJobs = replaceJobsCount(data_list[j+1]);
-      } else if (data_list[j] === "Permanent") {
-        permanentJobs = replaceJobsCount(data_list[j+1]);
-      } else if (data_list[j] === "Contract") {
-        contractJobs = replaceJobsCount(data_list[j+1]);
-      } else if (data_list[j] === "Internship") {
-        internshipJobs = replaceJobsCount(data_list[j+1]);
-      } else if (data_list[j] === "Part-time") {
-        partTimeJobs = replaceJobsCount(data_list[j+1]);
-      } else if (data_list[j] === "Temporary") {
-        temporaryJobs = replaceJobsCount(data_list[j+1]);
+
+      switch (data_list[j]) {
+        case "Full-time":
+          fullTimeJobs = replaceJobsCount(data_list[j+1]);
+          break;
+        case "Permanent":
+          permanentJobs = replaceJobsCount(data_list[j+1]);
+          break;
+        case "Contract":
+          contractJobs = replaceJobsCount(data_list[j+1]);
+          break;
+        case "Internship":
+          internshipJobs = replaceJobsCount(data_list[j+1]);
+          break;
+        case "Part-time":
+          partTimeJobs = replaceJobsCount(data_list[j+1]);
+          break;
+        case "Temporary":
+          temporaryJobs = replaceJobsCount(data_list[j+1]);
+          break;
       }
     }
  
@@ -99,10 +107,7 @@ function myFunction () {
   sheetData.getRange(1, 2).setValue(getDate());
 
   // get indeed data
-  getIndeedJobs(sheet, sheetData);
-
-  // get linkedin data
-  getLinkedinJobs(sheet, sheetData);
+  getIndeedJobs(sheetData);
 
   Browser.msgBox("Dane!");
 };
